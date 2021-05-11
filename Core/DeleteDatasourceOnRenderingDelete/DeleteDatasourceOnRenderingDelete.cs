@@ -1,8 +1,6 @@
 using Sitecore;
-using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Events;
-using Sitecore.Form.Web.UI.Controls;
 using Sitecore.Layouts;
 using System;
 using System.Linq;
@@ -26,7 +24,7 @@ namespace Core.DeleteDatasourceOnRenderingDelete
 
             if (itemChanges.HasFieldsChanged)
             {
-                var layoutField = itemChanges.FieldChanges.OfType<IResult>().SingleOrDefault(f => f.FieldID == Sitecore.FieldIDs.FinalLayoutField);
+                var layoutField = itemChanges.FieldChanges.OfType<FieldChange>().SingleOrDefault(f => f.FieldID == FieldIDs.FinalLayoutField);
                 if (layoutField == null) return; // presentation hasn't changed
 
                 string originalLayoutFieldValue = layoutField.OriginalValue;
